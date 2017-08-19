@@ -31,3 +31,16 @@ struct Framebuffer
 {
 	unsigned handle, width, height;
 };
+
+
+struct Texture
+{
+	unsigned handle;
+};
+
+// RGBA = 4 chanels
+// 512 x 512 = 262144 pixels * 4 chanels = ~1 million
+Texture makeTexture(unsigned w, unsigned h, unsigned c, const unsigned char *pixels);
+
+void freeTexture(Texture &t);
+
