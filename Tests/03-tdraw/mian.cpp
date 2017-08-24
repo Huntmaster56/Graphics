@@ -4,6 +4,8 @@
 #include "graphics\Vertex.h"
 #include "graphics\Draw.h"
 
+#include "glm/ext.hpp"
+
 int main()
 {
 	Context context;

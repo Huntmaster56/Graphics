@@ -27,6 +27,9 @@
     <ClCompile Include="Source\genShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Loaad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\graphics\context.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\graphics\genShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\graphics\Loaad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

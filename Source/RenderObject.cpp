@@ -31,8 +31,8 @@ Geometry makeGeometry(const Vertex *verts, size_t vsize, const unsigned *idxs, s
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)16);
 
-	//glEnableVertexAttribArray(1);
-	//glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)16);
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)32);
 
 
 

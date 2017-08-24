@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Loaad.cpp" />
     <ClCompile Include="Source\context.cpp" />
     <ClCompile Include="Source\Draw.cpp" />
     <ClCompile Include="Source\genShape.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="Include\graphics\genShape.h" />
     <ClInclude Include="Include\graphics\RenderObject.h" />
     <ClInclude Include="Include\graphics\Vertex.h" />
+    <ClInclude Include="Include\graphics\Loaad.h" />
     <ClInclude Include="Source\glinc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

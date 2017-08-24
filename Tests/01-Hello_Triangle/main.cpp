@@ -3,6 +3,8 @@
 #include "graphics\RenderObject.h"
 #include "graphics\Vertex.h"
 #include "graphics\Draw.h"
+#include <fstream>
+#include <string>
 
 int main()
 {
