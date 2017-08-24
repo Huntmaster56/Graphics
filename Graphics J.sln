@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02-UniTex", "Tests\02-UniTe
 		{B60D72E5-D17E-4632-B321-72D86FA055CA} = {B60D72E5-D17E-4632-B321-72D86FA055CA}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03-tdraw", "Tests\03-tdraw\03-tdraw.vcxproj", "{A5B5DAA8-D749-4353-A52D-167420B4366D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -47,6 +49,14 @@ Global
 		{4C466196-749C-41FC-974C-97D001334DB4}.Release|x64.Build.0 = Release|x64
 		{4C466196-749C-41FC-974C-97D001334DB4}.Release|x86.ActiveCfg = Release|Win32
 		{4C466196-749C-41FC-974C-97D001334DB4}.Release|x86.Build.0 = Release|Win32
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Debug|x64.ActiveCfg = Debug|x64
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Debug|x64.Build.0 = Debug|x64
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Debug|x86.ActiveCfg = Debug|Win32
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Debug|x86.Build.0 = Debug|Win32
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Release|x64.ActiveCfg = Release|x64
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Release|x64.Build.0 = Release|x64
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Release|x86.ActiveCfg = Release|Win32
+		{A5B5DAA8-D749-4353-A52D-167420B4366D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
