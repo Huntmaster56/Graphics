@@ -12,6 +12,16 @@ void s0_draw(const Framebuffer &f,
 
 void clearFramebuffer(const Framebuffer &f);
 
+
+
+enum RenderFlag {DEPTH = 1};
+void setFlags(int flags);
+
+
+
+
+
+
 void setUniform(const Shader &s, int location, float value);
 void setUniform(const Shader &s, int location, int value);
 

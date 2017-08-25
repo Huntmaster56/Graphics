@@ -21,6 +21,19 @@ void s0_draw(const Framebuffer &f, const Shader &s, const Geometry &g)
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 void setUniform(const Shader & s, int location, float value)
 {
 	glProgramUniform1f(s.handle, location, value);
@@ -47,6 +60,19 @@ void setUniform(const Shader & s, int location, const Texture & value, unsigned 
 	glProgramUniform1i(s.handle, location, slot);
 }
 
+void setFlags(int flags)
+{
+
+	if (flags & RenderFlag::DEPTH)
+	{
+		glEnable(GL_DEPTH_TEST);
+	}
+	else
+	{
+		glDisable(GL_DEPTH_TEST);
+	}
+
+}
 
 
 namespace __internal

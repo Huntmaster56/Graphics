@@ -3,7 +3,7 @@
 #include "graphics\Vertex.h"
 #include "graphics\Draw.h"
 #include "graphics/Loaad.h"
-
+#include "glm\ext.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -44,20 +44,43 @@ void main()
 	//Shader s = makeShader(fv.c_str(), ff.c_str());
 	Geometry quad = makeGeometry(vquad, 4, quadidx, 6);
 
-	Geometry cube = loadGeometry("../../resources/shaders/Duck.obj");
+	Geometry cube = loadGeometry("../../resources/models/cube.obj");
 	
 	Shader sq = loadShader("../../resources/shaders/test.vert", "../../resources/shaders/test.frag");
 
-	Framebuffer screen = { 0, 800, 800 };
+	Shader scube = loadShader("../../resources/shaders/cube.vert", "../../resources/shaders/cube.frag");
 
+	Framebuffer screen = { 0, 800, 800 };
+	float x = 0, y = 0;
 	while (context.step())
 	{
 		clearFramebuffer(f);
+		float time = context.getTime();
+
+		int frame = 3;
+		frame += context.getKey('W') * 3;
+		frame += context.getKey('A') * 2;
+		frame += context.getKey('D') * 1;
+		frame %= 4;
+
+		x += context.getKey('D') * .016;
+		y += context.getKey('W') * .016;
+		x -= context.getKey('A') * .016;
+		y -= context.getKey('S') * .016;
 
 		int loc = 0, tslot = 0;
-		setUniform(sq, 0, tex, 0);
+		//setUnifroms(sq, loc, tslot, tex, (int)(time*3) % 4 + frame*4, 4, 4,x,y);
 
-		s0_draw(screen, sq, quad);
+
+
+		glm::mat4 mod_cube = glm::rotate(time, glm::vec3(1, 1, 1));
+		
+		setFlags(RenderFlag::DEPTH);
+
+		
+		loc = 0, tslot = 0;
+		setUnifroms(scube, loc, tslot, mod_cube);
+		s0_draw(screen, scube, quad);
 
 	}
 
