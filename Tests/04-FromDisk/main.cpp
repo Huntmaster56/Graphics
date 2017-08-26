@@ -30,23 +30,12 @@ void main()
 
 	unsigned quadidx[] = { 0,1,3, 1,2,3 };
 
-
-
-
-
-	// Put all this in a load shader function!
-	//std::ifstream ifsv("../../resources/shaders/test.vert");
-	//std::string fv((std::istreambuf_iterator<char>(ifsv)), (std::istreambuf_iterator<char>()));
-	//std::ifstream ifsf("../../resources/shaders/test.frag");
-	//std::string ff((std::istreambuf_iterator<char>(ifsf)), (std::istreambuf_iterator<char>()));
-
-
 	//Shader s = makeShader(fv.c_str(), ff.c_str());
 	Geometry quad = makeGeometry(vquad, 4, quadidx, 6);
 
 	Geometry cube = loadGeometry("../../resources/models/cube.obj");
 	
-	Shader sq = loadShader("../../resources/shaders/test.vert", "../../resources/shaders/test.frag");
+	//Shader sq = loadShader("../../resources/shaders/test.vert", "../../resources/shaders/test.frag");
 
 	Shader scube = loadShader("../../resources/shaders/cube.vert", "../../resources/shaders/cube.frag");
 
@@ -80,7 +69,7 @@ void main()
 		
 		loc = 0, tslot = 0;
 		setUnifroms(scube, loc, tslot, mod_cube);
-		s0_draw(screen, scube, quad);
+		s0_draw(screen, scube, cube);
 
 	}
 

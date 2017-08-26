@@ -45,10 +45,10 @@ void setUniform(const Shader & s, int location, int value)
 }
 
 
-void clearFramebuffer(const Framebuffer & f)
+void clearFramebuffer(const Framebuffer & f, bool color, bool depth)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, f.handle);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT * color | GL_DEPTH_BUFFER_BIT * depth);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 

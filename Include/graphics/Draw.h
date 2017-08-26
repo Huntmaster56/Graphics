@@ -10,7 +10,7 @@ void s0_draw(const Framebuffer &f,
 			 const Shader &s,
 			 const Geometry &g);
 
-void clearFramebuffer(const Framebuffer &f);
+void clearFramebuffer(const Framebuffer &f, bool color = true, bool depth = true);
 
 
 
