@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9E71012B-EE44-4BA5-8C0E-7EB901F0A8B6}</ProjectGuid>
-    <RootNamespace>shaders</RootNamespace>
+    <ProjectGuid>{98319A8B-8C97-4671-BDDF-A94008A0BBA1}</ProjectGuid>
+    <RootNamespace>Project1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -110,16 +110,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="cube.frag" />
-    <None Include="cube.vert" />
-    <None Include="lambert.frag" />
-    <None Include="lambert.vert" />
-    <None Include="mvplite.frag" />
-    <None Include="mvplite.vert" />
-    <None Include="standard.frag" />
-    <None Include="standard.vert" />
-    <None Include="test.frag" />
-    <None Include="test.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
