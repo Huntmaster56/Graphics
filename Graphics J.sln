@@ -35,6 +35,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06-Lights", "Tests\06-Light
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "07-Materials", "Tests\07-Materials\07-Materials.vcxproj", "{DA9A97BA-0D10-493C-8B1F-B59922B27CFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B60D72E5-D17E-4632-B321-72D86FA055CA} = {B60D72E5-D17E-4632-B321-72D86FA055CA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
