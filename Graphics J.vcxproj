@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\Loaad.cpp" />
     <ClCompile Include="Source\context.cpp" />
     <ClCompile Include="Source\Draw.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Source\RenderObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\graphics\GameObject.h" />
     <ClInclude Include="Include\graphics\context.h" />
     <ClInclude Include="Include\graphics\Draw.h" />
     <ClInclude Include="Include\graphics\genShape.h" />

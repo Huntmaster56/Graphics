@@ -3,6 +3,7 @@
 struct Geometry;
 struct Shader;
 struct Framebuffer;
+struct texture;
 
 #include "glm\fwd.hpp"
 
