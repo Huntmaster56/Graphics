@@ -20,6 +20,14 @@ void __internal::t_setUniform(const Shader &s, int &loc_io, int &tex_io, const S
 	t_setUniform(s, loc_io, tex_io, val.gloss);    
 }
 
+void __internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, const DirectionalLight & val)
+{
+	t_setUniform(s, loc_io, tex_io, val.getProj());
+	t_setUniform(s, loc_io, tex_io, val.getView());
+	t_setUniform(s, loc_io, tex_io, val.color);
+	t_setUniform(s, loc_io, tex_io, val.intensity);
+}
+
 
 
 

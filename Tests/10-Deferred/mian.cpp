@@ -9,12 +9,16 @@
 
 void main()
 {
+	Context context;
+	context.init(1280, 720);
+
+
 	Vertex vquad[] = { { { -1,-1,0,1 },{},{ 0,0 },{ 0,0,1,0 } },{ { 1,-1,0,1 },{},{ 1,0 },{ 0,0,1,0 } },{ { 1, 1,0,1 },{},{ 1,1 },{ 0,0,1,0 } },{ { -1, 1,0,1 },{},{ 0,1 },{ 0,0,1,0 } } };
 	unsigned quadidx[] = { 0,1,3, 1,2,3 };
 	solveTangents(vquad, 4, quadidx, 6);
 	Geometry quad = makeGeometry(vquad, 4, quadidx, 6);
 
-///////////////////////////////////////////////////////////////////////////		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+///////////////////////////////////////////////////////////////////////////////
 	SpecGloss objects[8];
 
 	objects[0].geo = quad;
@@ -52,20 +56,22 @@ void main()
 	dlights[0].range = 10;
 	dlights[0].intensity = 1;
 	dlights[0].color = glm::vec4(1, 1, 0, 1);
-	dlights[0].direction = glm::vec3(1, 0, 0);
+	dlights[0].direction = glm::normalize(glm::vec3(1, -1, -1));
 
 	dlights[1].range = 10;
 	dlights[1].intensity = 1;
 	dlights[1].color = glm::vec4(0, 0, 1, 1);
-	dlights[1].direction = glm::vec3(-1, 0, 0);
+	dlights[1].direction = glm::normalize(glm::vec3(-1, 0, 0));
 
 	Shader gpass = loadShader("../../resources/shaders/gpass.vert", "../../resources/shaders/gpass.frag");
 	Shader cpass = loadShader("../../resources/shaders/cpass.vert", "../../resources/shaders/cpass.frag");
 	Shader lpassD = loadShader("../../resources/shaders/lpassD.vert", "../../resources/shaders/lpassD.frag");
+	Shader spassD = loadShader("../../resources/shaders/shadow.vert", "../../resources/shaders/shadow.frag");
 
 	Framebuffer screen = { 0,1280,720 };
 	Framebuffer gbuffer = makeFramebuffer(1280, 720, 4, true, 2, 2);
 	Framebuffer lbuffer = makeFramebuffer(1280, 720, 4, false, 2, 0);
+	Framebuffer sbuffer = makeFramebuffer(1024, 1024, 0, true, 0, 0);
 
 	int loc = 0, slot = 0;
 	while (context.step())
@@ -77,27 +83,40 @@ void main()
 		for (int i = 0; i < 3; ++i)
 		{
 			loc = slot = 0;
-			setUniforms(gpass, loc, slot, cam, objects[i]);
+			setUnifroms(gpass, loc, slot, cam, objects[i]);
 			s0_draw(gbuffer, gpass, objects[i].geo);
 		}
 		////////////////////////////
 		// LPass
 		clearFramebuffer(lbuffer);
-		setFlags(RenderFlag::ADDITIVE);
-		for (int i = 0; i < 2; ++i)
+		for (int i = 0; i < 1; ++i)
 		{
+			clearFramebuffer(sbuffer);
+			setFlags(RenderFlag::DEPTH);
+			for (int j = 0; j < 3; ++j)
+			{
+				loc = slot = 0;
+				setUnifroms(spassD, loc, slot, dlights[i].getProj(), dlights[i].getView(), objects[j].model);
+				s0_draw(sbuffer, spassD, objects[j].geo);
+			}
 			loc = slot = 0;
-			setUniforms(lpassD, loc, slot, cam, dlights[i], gbuffer.targets[3]);
-			s0_draw(lbuffer, lpassD, quad);
+			setFlags(RenderFlag::ADDITIVE);
+			for (int i = 0; i < 2; ++i)
+			{
+				loc = slot = 0;
+				clearFramebuffer(screen);
+				setFlags(RenderFlag::NONE);
+				setUnifroms(lpassD, loc, slot, cam, dlights[i], gbuffer.targets[3]);
+				s0_draw(lbuffer, lpassD, quad);
+			}
 		}
-
 		////////////////////////////
 		// CPass
 		loc = slot = 0;
 		clearFramebuffer(screen);
-		setUniforms(cpass, loc, slot, lbuffer.targets[0]);
+		setUnifroms(cpass, loc, slot, lbuffer.targets[0]);
 		s0_draw(screen, cpass, quad);
 	}
-	context.term();
+	context.Term();
 }
 

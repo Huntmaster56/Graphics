@@ -22,18 +22,6 @@ void s0_draw(const Framebuffer &f, const Shader &s, const Geometry &g)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 void setUniform(const Shader & s, int location, float value)
 {
 	glProgramUniform1f(s.handle, location, value);
@@ -64,12 +52,13 @@ void setFlags(int flags)
 {
 
 	if (flags & RenderFlag::DEPTH)
-	{
 		glEnable(GL_DEPTH_TEST);
-	}
-	else
+	else glDisable(GL_DEPTH_TEST);
+	
+	if (flags & RenderFlag::ADDITIVE)
 	{
-		glDisable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE);
 	}
 
 }
