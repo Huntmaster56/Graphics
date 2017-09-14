@@ -3,17 +3,23 @@
 
 in vec2 vUV;
 
-layout(location = 0) uniform sampler2D map;
+layout(location = 0) uniform sampler2D map1;
+layout(location = 1) uniform sampler2D map2;
+layout(location = 2) uniform sampler2D map3;
+layout(location = 3) uniform float time;
 
 out vec4 outColor;
 
 
 vec4 crossblur(in sampler2D map, in vec2 uv, in int it);
+vec4 sobel(in sampler2D map, in vec2 UV);
 
 void main()
 {
-	outColor = sobel(map, vUV, 8);
+	//outColor = sobel(map, vUV, 8);
+	vec4 shimmer = length(sobel(map3, vUV)) * crossblur(map2, vUV,64);
 
+	outColor = 2*cos(time/10+vUV.y) * shimmer + texture(map1, vUV);
 }
 
 vec4 crossblur(in sampler2D map, in vec2 uv, int it)
@@ -37,8 +43,8 @@ vec4 sobel(in sampler2D map, in vec2 UV)
 	texture(map,UV + vec2( 1, -1)/sDim)   +
 	texture(map,UV + vec2( 0, -1)/sDim)*2 +
 	texture(map,UV + vec2(-1, -1)/sDim)   -
-	texture(map,UV + vec2( 1,  1)/sDim)    -
-	texture(map,UV + vec2( 0,  1)/sDim)*2  -
+	texture(map,UV + vec2( 1,  1)/sDim)   -
+	texture(map,UV + vec2( 0,  1)/sDim)*2 -
 	texture(map,UV + vec2(-1,  1)/sDim);
 
 	vec4 xColor = 
