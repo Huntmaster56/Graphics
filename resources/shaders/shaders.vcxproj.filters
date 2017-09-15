@@ -81,5 +81,11 @@
     <None Include="lpassD.vert">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="skyBox.vert">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="skyBox.frag">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

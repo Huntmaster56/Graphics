@@ -128,6 +128,8 @@
     <None Include="quad.vert" />
     <None Include="shadow.frag" />
     <None Include="shadow.vert" />
+    <None Include="skyBox.frag" />
+    <None Include="skyBox.vert" />
     <None Include="standard.frag" />
     <None Include="standard.vert" />
     <None Include="test.frag" />

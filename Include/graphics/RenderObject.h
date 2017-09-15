@@ -33,7 +33,10 @@ struct Texture
 	unsigned handle;
 };
 
-
+struct Cubemap
+{
+	unsigned handle;
+};
 
 struct Framebuffer
 {

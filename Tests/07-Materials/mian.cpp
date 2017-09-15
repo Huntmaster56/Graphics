@@ -75,10 +75,6 @@ int main()
 	{
 		float time = context.getTime();
 		ss.model = glm::rotate(time, glm::vec3(0, 1, 0)); // hotdog
-		//go_model = glm::rotate(time, glm::vec3(1, 0, 0))
-		//	* glm::rotate(glm::radians(90.f), glm:: vec3(1,0,0))
-		//	* glm::scale(glm::vec3(2,2,1));
-
 
 		clearFramebuffer(fBuffer);
 		setFlags(RenderFlag::DEPTH);
