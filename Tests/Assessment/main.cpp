@@ -14,57 +14,48 @@ void main()
 
 	std::vector<std::string> faces;
 	{
-		"../../resources/textures/stormydays_ft.jpg";
-		"../../resources/textures/stormydays_bk.jpg";
+		"../../resources/textures/stormydays_ft.tga",
+			"../../resources/textures/stormydays_bk.tga",
 
-		"../../resources/textures/stormydays_up.jpg";
-		"../../resources/textures/stormydays_dn.jpg";
-		
-		"../../resources/textures/stormydays_rt.jpg";
-		"../../resources/textures/stormydays_lf.jpg";
-	}
+			"../../resources/textures/stormydays_up.tga",
+			"../../resources/textures/stormydays_dn.tga",
+
+			"../../resources/textures/stormydays_rt.tga",
+			"../../resources/textures/stormydays_lf.tga";
+	};
+
 	Cubemap cubemap = loadCubemap(faces);
 
-	Geometry skyBoxGeo;
+	Geometry skyBoxGeo = loadGeometry("../../resources/models/cube.obj");
 	
-	Shader skyBoxShader;
+	Shader skyBoxShader = loadShader("../../resources/shaders/skyBox.vert",
+		"../../resources/shaders/skyBox.frag");
 
-	glm::mat4 skyBoxScale;
-
-	skyBoxGeo = loadGeometry("../../resources/models/cube.obj");
-
-	skyBoxShader = loadShader("../../resources/shaders/skyBox.vert",
-							  "../../resources/shaders/skyBox.frag");
+	glm::mat4 skymodel = glm::scale(glm::vec3(20, 20, 20));
 
 	Framebuffer screen = { 0, 1280, 720 };
-	Framebuffer fBuffer = makeFramebuffer(1280, 720, 4, true, 3, 1);
-
-
 
 
 	Camera cam;
-
-	cam.view = glm::lookAt(glm::vec3(0, 2, 3),
-		glm::vec3(0, 2, 0),
-		glm::vec3(0, 1, 0));
-
-	cam.proj = glm::perspective(45.f, 800.f / 600.f, .01f, 100.f);
-
+	cam.view;// = glm::lookAt(glm::vec3(0,1, -200), glm::vec3(0,0,0), glm::vec3(0,1,0)); 
+	cam.proj = glm::perspective(45.f, 1280.f / 720.f, 1.f, 10000.f);
+	 
+	int loc = 0, slot = 0;
 	while (context.step())
 	{
-		clearFramebuffer(fBuffer);
+		float time = context.getTime();
+		clearFramebuffer(screen);
 		setFlags(RenderFlag::DEPTH);
 
-		int loc = 0, slot = 0;
-		setUnifroms(skyBoxShader, loc, slot, cam.proj, cam.view, skyBoxGeo);			// Light Information
+		skymodel = glm::scale(glm::vec3(1, 1, 1));
 
-		s0_draw(fBuffer, skyBoxShader, skyBoxGeo);
+		loc = slot = 0;
+		setUnifroms(skyBoxShader, loc, slot, cam.proj, cam.view, skymodel, cubemap);
 
-		clearFramebuffer(screen);
-
+		s0_draw(screen, skyBoxShader, skyBoxGeo);
 
 	}
-
+	context.Term();
 
 
 }
@@ -72,4 +63,4 @@ void main()
 
 
 
- 
+   
