@@ -4,11 +4,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
 #include "graphics\Vertex.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
-#include "obj\tiny_obj_loader.h"
+#include  "obj\tiny_obj_loader.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb\stb_image.h"
 #include "glinc.h"

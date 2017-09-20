@@ -12,7 +12,7 @@ void main()
 	Context context;
 	context.init(1280, 720);
 
-	std::vector<std::string> faces;
+	std::vector<std::string> faces =
 	{
 		"../../resources/textures/stormydays_ft.tga",
 			"../../resources/textures/stormydays_bk.tga",
@@ -21,7 +21,7 @@ void main()
 			"../../resources/textures/stormydays_dn.tga",
 
 			"../../resources/textures/stormydays_rt.tga",
-			"../../resources/textures/stormydays_lf.tga";
+			"../../resources/textures/stormydays_lf.tga"
 	};
 
 	Cubemap cubemap = loadCubemap(faces);
@@ -38,7 +38,7 @@ void main()
 
 	Camera cam;
 	cam.view;// = glm::lookAt(glm::vec3(0,1, -200), glm::vec3(0,0,0), glm::vec3(0,1,0)); 
-	cam.proj = glm::perspective(45.f, 1280.f / 720.f, 1.f, 10000.f);
+	cam.proj = glm::perspective(45.f, 1280.f / 720.f, 1.f, 10.f);
 	 
 	int loc = 0, slot = 0;
 	while (context.step())
@@ -47,7 +47,9 @@ void main()
 		clearFramebuffer(screen);
 		setFlags(RenderFlag::DEPTH);
 
-		skymodel = glm::scale(glm::vec3(1, 1, 1));
+		skymodel = glm::translate(glm::vec3(sin(time), cos(time), 0)) * glm::rotate(time, glm::vec3(0, 1, 0));
+
+		skymodel = glm::scale(glm::vec3(4, 4, 4));
 
 		loc = slot = 0;
 		setUnifroms(skyBoxShader, loc, slot, cam.proj, cam.view, skymodel, cubemap);
