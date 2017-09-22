@@ -37,7 +37,7 @@ void main()
 
 
 	Camera cam;
-	cam.view;// = glm::lookAt(glm::vec3(0,1, -200), glm::vec3(0,0,0), glm::vec3(0,1,0)); 
+	cam.view;
 	cam.proj = glm::perspective(45.f, 1280.f / 720.f, 1.f, 10.f);
 	 
 	int loc = 0, slot = 0;
@@ -47,9 +47,7 @@ void main()
 		clearFramebuffer(screen);
 		setFlags(RenderFlag::DEPTH);
 
-		skymodel = glm::translate(glm::vec3(sin(time), cos(time), 0)) * glm::rotate(time, glm::vec3(0, 1, 0));
-
-		skymodel = glm::scale(glm::vec3(4, 4, 4));
+		skymodel = glm::scale(glm::vec3(4, 4, 4)) * glm::rotate(time, glm::vec3(0, 1, 0));;
 
 		loc = slot = 0;
 		setUnifroms(skyBoxShader, loc, slot, cam.proj, cam.view, skymodel, cubemap);
